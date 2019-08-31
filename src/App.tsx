@@ -38,14 +38,17 @@ export default class App extends Vue {
           <div class="row">
             <div class="col col-6">
               <VPlate>
-                <DatePicker currentDate={new Date()} />
+                <DatePicker currentDate={this.store.currentDate} onSelect={this.store.setCurrentDate}/>
               </VPlate>
             </div>
             <div class="col col-6">
               <VPlate>
-                <TasksList tasks={this.store.tasks.tasks}/>
+                <TasksList tasks={this.store.tasks.tasksForCurrentDate}/>
                 { this.isNewTaskMode ?
-                    <AddNewTask onSave={this.saveTask} onCancel={() => this.isNewTaskMode = false }/> :
+                    <AddNewTask onSave={this.saveTask}
+                                onCancel={() => this.isNewTaskMode = false }
+                                currentDate={this.store.currentDate}
+                    /> :
                     <VButton type={'default'}  onClick={() => this.isNewTaskMode = true }>Добавить</VButton>
                 }
               </VPlate>

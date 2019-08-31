@@ -15,10 +15,10 @@ html, body {
 }
 
 #app {
-    max-width: 960px;
+    max-width: 840px;
     margin: auto;
     padding: 30px;
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;

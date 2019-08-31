@@ -1,0 +1,67 @@
+.DatePicker {}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls {
+
+}
+
+.monthAndYear {
+  color: $gray-color;
+  font-weight: 700;
+}
+
+.button {
+  width: 25px;
+  height: 25px;
+  border: none;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #eee;
+  color: $gray-color;
+
+  & + & {
+    margin-left: 10px;
+  }
+}
+
+.DatePickerDaysTable {
+  margin-top: 15px;
+
+  th, td {
+    padding: 5px;
+    width: 45px;
+    line-height: 35px;
+    text-align: center;
+  }
+}
+
+
+.dayName {
+  color: $gray-color;
+  font-weight: 700;
+}
+
+.dayButton {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.dayButtonSelected {
+  composes: dayButton;
+  background-color: $primary-color;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.day {}
+
+.selected {
+
+}

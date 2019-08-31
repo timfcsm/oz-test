@@ -1,4 +1,4 @@
-import {Component, Emit} from "vue-property-decorator";
+import {Component, Emit, Prop} from "vue-property-decorator";
 import { VueComponent } from "@/shims-vue";
 import {VNode} from "vue";
 import { ITask } from "@/models";
@@ -13,12 +13,16 @@ interface Events {
 }
 
 interface Props extends Events {
+  currentDate: Date,
 }
 
 @Component({
   name: 'AddNewTask',
 })
 export default class TasksList extends VueComponent<Props>{
+  @Prop()
+  private currentDate!: Date;
+
   newTaskName: string = '';
   newTaskTime: string = '';
 
@@ -27,7 +31,7 @@ export default class TasksList extends VueComponent<Props>{
   @Emit('save')
   onSave(): ITask {
     const time = this.newTaskTime.split(':').map(Number);
-    const date = new Date();
+    const date = new Date(this.currentDate);
     date.setHours(time[0], time[1]);
 
     return {

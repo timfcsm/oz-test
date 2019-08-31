@@ -1,3 +1,4 @@
+import padStart from 'lodash.padstart';
 import { Component, Prop } from "vue-property-decorator";
 import { VueComponent } from "@/shims-vue";
 import {VNode} from "vue";
@@ -23,7 +24,7 @@ export default class TasksList extends VueComponent<Props>{
 
         return <div class={styles.TaskItem}>
             <div class={styles.check}><VCheckbox checked={this.task.checked} /></div>
-            <div class={styles.time}>{`${hours}:${minutes}`}</div>
+            <div class={styles.time}>{`${padStart(String(hours), 2, '0')}:${padStart(String(minutes), 2, '0')}`}</div>
             <div class={styles.title}>{this.task.title}</div>
         </div>
     }
