@@ -7,7 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.138",
+    "@types/lodash.padstart": "^4.6.6",
     "core-js": "^2.6.5",
+    "lodash.padstart": "^4.6.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
