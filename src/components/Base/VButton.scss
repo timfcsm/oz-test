@@ -1,0 +1,19 @@
+.VButton {
+  padding: 15px 20px;
+  background-color: $primary-color;
+  border: none;
+  color: #fff;
+  border-radius: $base-border-radius;
+  cursor: pointer;
+  transition: $base-transition;
+
+  &:hover,
+  &:focus {
+    background-color: darken($primary-color, 20);
+  }
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
