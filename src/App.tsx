@@ -38,7 +38,10 @@ export default class App extends Vue {
           <div class="row">
             <div class="col col-6">
               <VPlate>
-                <DatePicker currentDate={this.store.currentDate} onSelect={this.store.setCurrentDate}/>
+                <DatePicker currentDate={this.store.currentDate}
+                            onSelect={this.store.setCurrentDate}
+                            datesWithEvents={this.store.tasks.tasksDates}
+                />
               </VPlate>
             </div>
             <div class="col col-6">

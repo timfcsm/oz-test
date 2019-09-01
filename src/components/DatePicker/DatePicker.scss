@@ -51,6 +51,8 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
+  color: #7682A3;
+  font-weight: 700;
 }
 
 .dayButtonSelected {
@@ -58,6 +60,10 @@
   background-color: $primary-color;
   border-radius: 50%;
   color: #fff;
+}
+
+.hasEvents {
+  color: darkred;
 }
 
 .day {}

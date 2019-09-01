@@ -11,6 +11,7 @@ interface Events {
 
 interface Props extends Events {
   currentDate: Date,
+  datesWithEvents: string[],
 }
 
 const monthsNames = [
@@ -34,6 +35,8 @@ const monthsNames = [
 export default class DatePicker extends VueComponent<Props>{
   @Prop()
   private currentDate!: Date;
+  @Prop()
+  private datesWithEvents!: string[];
 
   selectedYear: number = new Date().getFullYear();
   selectedMonth: number = new Date().getMonth();
@@ -76,6 +79,7 @@ export default class DatePicker extends VueComponent<Props>{
                            renderedYear={this.selectedYear}
                            currentDate={this.currentDate}
                            onSelect={this.selectDate}
+                           datesWithEvents={this.datesWithEvents}
       />
     </div>
   }

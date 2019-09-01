@@ -1,7 +1,7 @@
 import padStart from 'lodash.padstart';
 import {Component, Prop, Emit} from "vue-property-decorator";
 import { VueComponent } from "@/shims-vue";
-import { VNode } from "vue";
+import {VNode, VNodeChildren} from "vue";
 
 import styles from './DatePicker.scss?module';
 
@@ -13,6 +13,7 @@ interface Props extends Events {
   renderedYear: number,
   renderedMonth: number,
   currentDate: Date,
+  datesWithEvents: string[],
 }
 
 @Component({
@@ -25,6 +26,8 @@ export default class DatePicker extends VueComponent<Props>{
   private renderedMonth!: number;
   @Prop()
   private renderedYear!: number;
+  @Prop()
+  private datesWithEvents!: string[];
 
   @Emit()
   select(day: number): Date {
@@ -35,7 +38,6 @@ export default class DatePicker extends VueComponent<Props>{
     const monthString = padStart(String(this.renderedMonth + 1), 2, '0');
     const dateString = `${this.renderedYear}-${monthString}-01T00:00:00+00:00`;
     const startMonth = new Date(dateString).getDay();
-    console.log(startMonth);
     return (6 + startMonth) % 7;
   }
 
@@ -48,14 +50,20 @@ export default class DatePicker extends VueComponent<Props>{
   }
 
   renderRows(): VNode {
-    let days = [];
-    const weeks = [];
+    let days: VNodeChildren = [];
+    const weeks: VNodeChildren = [];
+    const monthString: string = padStart(String(this.renderedMonth + 1), 2, '0');
+    const yearString: string = String(this.renderedYear);
 
     for (let i = this.daysFromPreviousMonth - 1; i >= 0; i--) {
       days.push(this.$createElement('td'));
     }
 
     for (let i = 1; i <= this.daysInMonth; i++) {
+      let localeDateString = `${padStart(String(i), 2, '0')}.${monthString}.${yearString}`;
+
+      console.log(localeDateString);
+
       if (days.length === 7) {
         weeks.push(this.$createElement('tr', undefined, days));
         days = [];
@@ -68,7 +76,8 @@ export default class DatePicker extends VueComponent<Props>{
 
       let button = this.$createElement('span', {
         class: [styles.dayButton, {
-          [styles.dayButtonSelected]: isSelected
+          [styles.dayButtonSelected]: isSelected,
+          [styles.hasEvents]: this.datesWithEvents.includes(localeDateString),
         }],
         on: {
           click: this.select.bind(this, i),

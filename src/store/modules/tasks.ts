@@ -30,4 +30,11 @@ export class TasksModule {
         const currentDateString = currentDate.toLocaleDateString();
         return this.tasks.filter(({date}) => date.toLocaleDateString() === currentDateString);
     }
+
+    @Getter()
+    public get tasksDates(): string[] {
+        return this.tasks
+            .map(({date}) => date.toLocaleDateString())
+            .filter((date, index, self) => self.indexOf(date) === index);
+    }
 }
