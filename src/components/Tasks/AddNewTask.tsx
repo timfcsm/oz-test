@@ -87,7 +87,7 @@ export default class TasksList extends VueComponent<Props>{
 
   render(): VNode {
     return <div>
-      <div class={['row', styles.inputs]}>
+      <div class={['row', styles.inputs]} data-cy="new-task-inputs">
         <div class="col col-4">
           <VTextInput value={this.newTaskTime} onChange={this.onChangeTime}
                       data-cy="new-task-time"

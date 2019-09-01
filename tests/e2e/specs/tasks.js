@@ -26,4 +26,14 @@ describe('Add Task', () => {
         cy.contains(newTitle);
       });
   });
+  
+  it('should show error if type invalid time', () => {
+    const invalidTimes = ['24:00', '10:65', 'abc'];
+  
+    invalidTimes.forEach((time) => {
+      cy.get('[data-cy=new-task-time]').type(`{selectall}${time}`);
+      cy.wait(3000);
+      cy.get('[data-cy=new-task-inputs]').contains('Введите валидное время');
+    });
+  });
 });
