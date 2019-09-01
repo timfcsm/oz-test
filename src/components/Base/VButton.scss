@@ -11,6 +11,11 @@
   &:focus {
     background-color: darken($primary-color, 20);
   }
+
+  &:disabled {
+    background-color: lighten($primary-color, 20);
+    cursor: default;
+  }
 }
 
 .block {

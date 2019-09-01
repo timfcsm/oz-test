@@ -12,6 +12,7 @@ interface IEvents {
 interface IProps extends IEvents {
     type?: 'default'|'success',
     block?: boolean,
+    disabled?: boolean,
 }
 
 @Component
@@ -21,6 +22,9 @@ export default class VButton extends VueComponent<IProps>{
 
     @Prop()
     private block!: boolean;
+
+    @Prop()
+    private disabled!: boolean;
 
     @Emit('click')
     onClick(event: MouseEvent): MouseEvent {
@@ -33,6 +37,9 @@ export default class VButton extends VueComponent<IProps>{
                 [styles.block]: this.block,
             }
         ];
-        return <button onClick={this.onClick} class={classList}>{ this.$slots.default }</button>
+        return <button onClick={this.onClick}
+                       class={classList}
+                       disabled={this.disabled}
+        >{ this.$slots.default }</button>
     }
 }

@@ -10,6 +10,7 @@ interface Events {
 
 interface Props extends Events {
   value: string,
+  disabled?: boolean,
 }
 
 @Component({
@@ -18,6 +19,8 @@ interface Props extends Events {
 export default class TasksList extends VueComponent<Props>{
   @Prop()
   private value!: string;
+  @Prop()
+  private disabled!: boolean;
 
   @Emit('change')
   onChange(event: InputEvent): string {
@@ -29,6 +32,8 @@ export default class TasksList extends VueComponent<Props>{
                   type="text"
                   value={this.value}
                   onChange={this.onChange}
+                  onInput={this.onChange}
+                  disabled={this.disabled}
     />
   }
 }
