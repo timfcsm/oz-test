@@ -62,8 +62,6 @@ export default class DatePicker extends VueComponent<Props>{
     for (let i = 1; i <= this.daysInMonth; i++) {
       let localeDateString = `${padStart(String(i), 2, '0')}.${monthString}.${yearString}`;
 
-      console.log(localeDateString);
-
       if (days.length === 7) {
         weeks.push(this.$createElement('tr', undefined, days));
         days = [];

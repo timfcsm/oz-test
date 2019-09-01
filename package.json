@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
     "@types/lodash": "^4.14.138",
@@ -19,8 +20,10 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "cypress": "^3.4.1",
     "sass-loader": "^8.0.0",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10"
