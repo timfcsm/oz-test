@@ -1,42 +1,44 @@
-import {Component, Emit, Prop} from "vue-property-decorator";
-import { VueComponent } from "@/shims-vue";
-import {VNode} from "vue";
-import delay from "@/util/delay";
-import { ITask } from "@/models";
-import VTextInput from "@/components/Base/VTextInput";
-import VButton from "@/components/Base/VButton";
+import {VNode} from 'vue';
+import {Component, Emit, Prop} from 'vue-property-decorator';
+
+import VButton from '@/components/Base/VButton';
+import VTextInput from '@/components/Base/VTextInput';
+import { ITask } from '@/models';
+import { VueComponent } from '@/shims-vue';
+import delay from '@/util/delay';
 
 import styles from './AddNewTask.scss?module';
 
-interface Errors {
-  [key: string]: Nullable<string>,
+interface IErrors {
+  [key: string]: Nullable<string>;
 }
 
-interface Events {
-  onCancel: () => void,
-  onSave: (task: ITask) => void,
+interface IEvents {
+  onCancel: () => void;
+  onSave: (task: ITask) => void;
 }
 
-interface Props extends Events {
-  currentDate: Date,
+interface IProps extends IEvents {
+  currentDate: Date;
 }
 
 @Component({
   name: 'AddNewTask',
 })
-export default class TasksList extends VueComponent<Props>{
-  @Prop()
-  private currentDate!: Date;
-
+export default class TasksList extends VueComponent<IProps> {
   newTaskName: string = '';
   newTaskTime: string = '';
   isValidTime: boolean = false;
-  errors: Errors = {
-    time: null
+  errors: IErrors = {
+    time: null,
   };
 
+  @Prop()
+  private currentDate!: Date;
+
+  // tslint ignore
   @Emit('cancel')
-  onCancel() {};
+  onCancel() {}
   @Emit('save')
   onSave(): ITask {
     const time = this.newTaskTime.split(':').map(Number);
@@ -49,10 +51,10 @@ export default class TasksList extends VueComponent<Props>{
 
     return {
       checked: false,
-      title,
       date,
-    }
-  };
+      title,
+    };
+  }
 
   get isValidTask(): boolean {
     return !!(this.isValidTime && this.newTaskName);
@@ -65,7 +67,7 @@ export default class TasksList extends VueComponent<Props>{
       return false;
     }
 
-    let timeStringRegex = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+    const timeStringRegex = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 
     return timeStringRegex.test(this.newTaskTime);
   }
@@ -95,7 +97,7 @@ export default class TasksList extends VueComponent<Props>{
         </div>
         <div class="col col-8">
           <VTextInput value={this.newTaskName}
-                      onChange={value => this.newTaskName = value}
+                      onChange={(value) => this.newTaskName = value}
                       disabled={!this.isValidTime}
                       data-cy="new-task-name"
           />
@@ -114,6 +116,6 @@ export default class TasksList extends VueComponent<Props>{
           >Сохранить</VButton>
         </div>
       </div>
-    </div>
+    </div>;
   }
 }

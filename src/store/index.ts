@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { createVuexStore } from "vuex-simple";
-import { MyStore } from "@/store/store";
+import { createVuexStore } from 'vuex-simple';
+
+import { MyStore } from '@/store/store';
 
 Vue.use(Vuex);
 

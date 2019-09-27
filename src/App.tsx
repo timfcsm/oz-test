@@ -1,26 +1,23 @@
 import { Component, Vue } from 'vue-property-decorator';
-import {useStore} from "vuex-simple";
-import {ITask} from "@/models";
+import { useStore } from 'vuex-simple';
+
+import VButton from '@/components/Base/VButton';
+import VPlate from '@/components/Base/VPlate';
+import DatePicker from '@/components/DatePicker/DatePicker';
+import AddNewTask from '@/components/Tasks/AddNewTask';
 import TasksList from '@/components/Tasks/TasksList';
-import VButton from "@/components/Base/VButton";
-import VPlate from "@/components/Base/VPlate";
-import AddNewTask from "@/components/Tasks/AddNewTask";
-import DatePicker from "@/components/DatePicker/DatePicker";
+import { ITask } from '@/models';
 
 import { MyStore } from '@/store/store';
 
 import '@/styles/bootstrap-reboot.scss';
-import './App.css'
+import './App.css';
 
 @Component
 export default class App extends Vue {
-  isNewTaskMode: boolean = false;
+  private store: MyStore = useStore(this.$store);
 
-  public store: MyStore = useStore(this.$store);
-
-  saveTask(task: ITask) {
-    this.store.tasks.addTask(task);
-  }
+  private isNewTaskMode: boolean = false;
 
   mounted() {
     // this.store.tasks.setTasks(tasks);
@@ -58,6 +55,10 @@ export default class App extends Vue {
             </div>
           </div>
         </div>
-    )
+    );
+  }
+
+  private saveTask(task: ITask) {
+    this.store.tasks.addTask(task);
   }
 }

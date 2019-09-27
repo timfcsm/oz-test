@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e"
   },
@@ -25,6 +26,7 @@
     "@vue/cli-service": "^3.0.3",
     "cypress": "^3.4.1",
     "sass-loader": "^8.0.0",
+    "tslint": "^5.20.0",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10"
   }

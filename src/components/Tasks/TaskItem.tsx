@@ -1,20 +1,21 @@
 import padStart from 'lodash.padstart';
-import { Component, Prop } from "vue-property-decorator";
-import { VueComponent } from "@/shims-vue";
-import {VNode} from "vue";
-import { ITask } from "@/models";
-import VCheckbox from "@/components/Base/VCheckbox";
+import { VNode } from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+
+import VCheckbox from '@/components/Base/VCheckbox';
+import { ITask } from '@/models';
+import { VueComponent } from '@/shims-vue';
 
 import styles from './TaskItem.scss?module';
 
-interface Props {
-    task: ITask
+interface IProps {
+    task: ITask;
 }
 
 @Component({
     name: 'TaskItem',
 })
-export default class TasksList extends VueComponent<Props>{
+export default class TasksList extends VueComponent<IProps> {
     @Prop()
     private task!: ITask;
 
@@ -26,6 +27,6 @@ export default class TasksList extends VueComponent<Props>{
             <div class={styles.check}><VCheckbox checked={this.task.checked} /></div>
             <div class={styles.time}>{`${padStart(String(hours), 2, '0')}:${padStart(String(minutes), 2, '0')}`}</div>
             <div class={styles.title}>{this.task.title}</div>
-        </div>
+        </div>;
     }
 }

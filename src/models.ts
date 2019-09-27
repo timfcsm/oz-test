@@ -1,5 +1,5 @@
 export interface ITask {
-    date: Date,
-    title: string,
-    checked: boolean,
+    date: Date;
+    title: string;
+    checked: boolean;
 }

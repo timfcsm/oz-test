@@ -1,38 +1,39 @@
-import { Mutation, State, Getter } from "vuex-simple";
-import { ITask } from "@/models";
+import { Getter, Mutation, State } from 'vuex-simple';
+
+import { ITask } from '@/models';
 
 export class TasksModule {
     @State()
-    public tasks: ITask[] = [];
+    tasks: ITask[] = [];
 
     constructor(private root: any, tasks: ITask[]) {
         this.setTasks(tasks);
     }
 
     @Mutation()
-    public setTasks(tasks: ITask[]) {
+    setTasks(tasks: ITask[]) {
         this.tasks = tasks;
     }
 
     @Mutation()
-    public addTask(task: ITask) {
+    addTask(task: ITask) {
         this.tasks.push(task);
     }
 
     @Mutation()
-    public toggleCompleted(task: ITask) {
+    toggleCompleted(task: ITask) {
         task.checked = !task.checked;
     }
 
     @Getter()
-    public get tasksForCurrentDate() {
+    get tasksForCurrentDate() {
         const { currentDate } = this.root;
         const currentDateString = currentDate.toLocaleDateString();
         return this.tasks.filter(({date}) => date.toLocaleDateString() === currentDateString);
     }
 
     @Getter()
-    public get tasksDates(): string[] {
+    get tasksDates(): string[] {
         return this.tasks
             .map(({date}) => date.toLocaleDateString())
             .filter((date, index, self) => self.indexOf(date) === index);

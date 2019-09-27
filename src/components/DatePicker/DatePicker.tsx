@@ -1,17 +1,18 @@
-import {Component, Prop, Emit} from "vue-property-decorator";
-import { VueComponent } from "@/shims-vue";
-import {VNode} from "vue";
-import DatePickerDaysTable from "@/components/DatePicker/DatePickerDaysTable";
+import { VNode } from 'vue';
+import { Component, Emit, Prop } from 'vue-property-decorator';
 
-import styles from './DatePicker.scss?module'
+import DatePickerDaysTable from '@/components/DatePicker/DatePickerDaysTable';
+import { VueComponent } from '@/shims-vue';
 
-interface Events {
+import styles from './DatePicker.scss?module';
+
+interface IEvents {
   onSelect?: (date: Date) => void;
 }
 
-interface Props extends Events {
-  currentDate: Date,
-  datesWithEvents: string[],
+interface IProps extends IEvents {
+  currentDate: Date;
+  datesWithEvents: string[];
 }
 
 const monthsNames = [
@@ -32,15 +33,14 @@ const monthsNames = [
 @Component({
   name: 'DatePicker',
 })
-export default class DatePicker extends VueComponent<Props>{
+export default class DatePicker extends VueComponent<IProps> {
   @Prop()
   private currentDate!: Date;
   @Prop()
   private datesWithEvents!: string[];
 
-  selectedYear: number = new Date().getFullYear();
-  selectedMonth: number = new Date().getMonth();
-
+  private selectedYear: number = new Date().getFullYear();
+  private selectedMonth: number = new Date().getMonth();
 
   @Emit('select')
   selectDate(date: Date): Date {
@@ -48,7 +48,7 @@ export default class DatePicker extends VueComponent<Props>{
   }
 
   incrementMonth(): void {
-    this.selectedMonth = (this.selectedMonth + 13)%12;
+    this.selectedMonth = (this.selectedMonth + 13) % 12;
 
     if (this.selectedMonth === 0) {
       this.selectedYear++;
@@ -56,7 +56,7 @@ export default class DatePicker extends VueComponent<Props>{
   }
 
   decrementMonth(): void {
-    this.selectedMonth = (this.selectedMonth - 1 + 12)%12;
+    this.selectedMonth = (this.selectedMonth - 1 + 12) % 12;
 
     if (this.selectedMonth === 11) {
       this.selectedYear--;
@@ -81,6 +81,6 @@ export default class DatePicker extends VueComponent<Props>{
                            onSelect={this.selectDate}
                            datesWithEvents={this.datesWithEvents}
       />
-    </div>
+    </div>;
   }
 }

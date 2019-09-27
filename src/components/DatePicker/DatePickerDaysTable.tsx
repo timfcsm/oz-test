@@ -1,25 +1,26 @@
 import padStart from 'lodash.padstart';
-import {Component, Prop, Emit} from "vue-property-decorator";
-import { VueComponent } from "@/shims-vue";
-import {VNode, VNodeChildren} from "vue";
+import { VNode, VNodeChildren } from 'vue';
+import { Component, Emit, Prop } from 'vue-property-decorator';
+
+import { VueComponent } from '@/shims-vue';
 
 import styles from './DatePicker.scss?module';
 
-interface Events {
+interface IEvents {
   onSelect?: (date: Date) => void;
 }
 
-interface Props extends Events {
-  renderedYear: number,
-  renderedMonth: number,
-  currentDate: Date,
-  datesWithEvents: string[],
+interface IProps extends IEvents {
+  renderedYear: number;
+  renderedMonth: number;
+  currentDate: Date;
+  datesWithEvents: string[];
 }
 
 @Component({
   name: 'DatePickerDaysTable',
 })
-export default class DatePicker extends VueComponent<Props>{
+export default class DatePicker extends VueComponent<IProps> {
   @Prop()
   private currentDate!: Date;
   @Prop()
@@ -46,7 +47,7 @@ export default class DatePicker extends VueComponent<Props>{
   }
 
   get weeksCount(): number {
-    return Math.ceil((this.daysInMonth + this.daysFromPreviousMonth)/7);
+    return Math.ceil((this.daysInMonth + this.daysFromPreviousMonth) / 7);
   }
 
   renderRows(): VNode {
@@ -60,19 +61,19 @@ export default class DatePicker extends VueComponent<Props>{
     }
 
     for (let i = 1; i <= this.daysInMonth; i++) {
-      let localeDateString = `${padStart(String(i), 2, '0')}.${monthString}.${yearString}`;
+      const localeDateString = `${padStart(String(i), 2, '0')}.${monthString}.${yearString}`;
 
       if (days.length === 7) {
         weeks.push(this.$createElement('tr', undefined, days));
         days = [];
       }
 
-      let isSelected = (i === this.currentDate.getDate() &&
+      const isSelected = (i === this.currentDate.getDate() &&
             this.renderedMonth === this.currentDate.getMonth() &&
             this.renderedYear === this.currentDate.getFullYear()
       );
 
-      let button = this.$createElement('span', {
+      const button = this.$createElement('span', {
         class: [styles.dayButton, {
           [styles.dayButtonSelected]: isSelected,
           [styles.hasEvents]: this.datesWithEvents.includes(localeDateString),
@@ -108,6 +109,6 @@ export default class DatePicker extends VueComponent<Props>{
         </thead>
         {this.renderRows()}
       </table>
-    </div>
+    </div>;
   }
 }
