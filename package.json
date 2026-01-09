@@ -23,7 +23,7 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
+    "@vue/cli-service": "^5.0.9",
     "cypress": "^3.4.1",
     "sass-loader": "^8.0.0",
     "tslint": "^5.20.0",
